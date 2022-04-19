@@ -1,3 +1,6 @@
+/// Group: FP LPR Group 2
+/// Title: Sanity in the times of COVID-19
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -53,6 +56,7 @@ class CovidWebsite extends StatelessWidget {
 
             // Navigation bar
             Container(
+              
               color: Colors.teal,
               height: 70,
               width: MediaQuery.of(context).size.width,
@@ -85,8 +89,76 @@ class CovidWebsite extends StatelessWidget {
                 ],
               ),
             ),
-          ]
-        ),
+
+            // Actual page content
+            Column ( 
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.center,
+                  height: 300,  
+                  width: 600, 
+                  color: Colors.amber,
+                  child: Column(children: [
+                    Text("Social", style: buttonTextStyle),
+                    //Actual text
+                    Text(
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                      style: GoogleFonts.robotoMono(fontSize: 16),
+                    )
+                 ],
+                 )
+               ),
+                Container(
+                  alignment: Alignment.center,
+                  height: 300,  
+                  width: 600, 
+                  color: Colors.amber,
+                  child: Column(children: [
+                    Text("Social", style: buttonTextStyle),
+                    //Actual text
+                    Text(
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                      style: GoogleFonts.robotoMono(fontSize: 16),
+                    )
+                 ],
+                 )
+               ),
+                Container(
+                  alignment: Alignment.center,
+                  height: 300,  
+                  width: 600, 
+                  color: Colors.amber,
+                  child: Column(children: [
+                    Text("Social", style: buttonTextStyle),
+                    //Actual text
+                    Text(
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                      style: GoogleFonts.robotoMono(fontSize: 16),
+                    )
+                 ],
+                 )
+               ),
+                Container(
+                  alignment: Alignment.center,
+                  height: 300,  
+                  width: 600, 
+                  color: Colors.amber,
+                  child: Column(children: [
+                    Text("Social", style: buttonTextStyle),
+                    //Actual text
+                    Text(
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                      style: GoogleFonts.robotoMono(fontSize: 16),
+                    )
+                 ],
+                 )
+               ),
+
+               //Title
+              ],
+            )
+          ],
+        )  
       ),
     );
   }
