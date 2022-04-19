@@ -11,7 +11,25 @@ var titleTextStyle = GoogleFonts.robotoMono(
 var buttonTextStyle = GoogleFonts.robotoMono(
   fontSize: 30,
   color: Colors.black);
+  
+const double textBoxWidth = 800;
 
+var textBoxDec = const BoxDecoration (
+  color: Colors.amber,
+  borderRadius: BorderRadius.all( 
+    Radius.circular(12.0),
+  ),
+);
+
+var textBoxPadding = const EdgeInsets.symmetric(
+  vertical: 10, 
+  horizontal: 20,
+);
+
+var textBoxMargin = const EdgeInsets.symmetric(
+  horizontal: 10,
+  vertical: 20
+);
 
 void main() {
   runApp(const MyApp());
@@ -110,10 +128,11 @@ class SocialContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.center,
-      height: 300,  
-      width: 600, 
-      color: Colors.amber,
+      decoration: textBoxDec,
+      padding: textBoxPadding,
+      margin: textBoxMargin,
+      alignment: Alignment.center,  
+      width: textBoxWidth, 
       child : Column(children: [
         Text("Social", style: buttonTextStyle),
         //Actual text
@@ -132,10 +151,11 @@ class PhysicalContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: textBoxDec,
+      margin: textBoxMargin,
+      padding: textBoxPadding,
       alignment: Alignment.center,
-      height: 300,  
-      width: 600, 
-      color: Colors.amber,
+      width: textBoxWidth, 
       child : Column(children: [
         Text("Physical", style: buttonTextStyle),
         //Actual text
@@ -154,10 +174,11 @@ class MentalContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.center,
-      height: 300,  
-      width: 600, 
-      color: Colors.amber,
+      decoration: textBoxDec,
+      padding: textBoxPadding,
+      margin: textBoxMargin,
+      alignment: Alignment.center, 
+      width: textBoxWidth, 
       child : Column(children: [
         Text("Mental", style: buttonTextStyle),
         //Actual text
@@ -176,10 +197,11 @@ class ResourcesContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: textBoxDec,
+      padding: textBoxPadding,
+      margin: textBoxMargin,
       alignment: Alignment.center,
-      height: 300,  
-      width: 600, 
-      color: Colors.amber,
+      width: textBoxWidth, 
       child : Column(children: [
         Text("Resources", style: buttonTextStyle),
         //Actual text
