@@ -5,6 +5,9 @@ var titleTextStyle = GoogleFonts.robotoMono(
   fontSize: 72,
   color: Colors.black );
 
+var buttonTextStyle = GoogleFonts.robotoMono(
+  fontSize: 30,
+  color: Colors.black);
 
 
 void main() {
@@ -48,22 +51,40 @@ class CovidWebsite extends StatelessWidget {
               ),
             ),
 
-            // Navbar
+            // Navigation bar
             Container(
               color: Colors.teal,
               height: 70,
               width: MediaQuery.of(context).size.width,
               child: Row(
-                children: const <Widget>[
-                  FractionallySizedBox( 
-                    heightFactor: 1,
-                    widthFactor: 0.1,
-                  )
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+
+                // Navigation bar buttons
+                children:  <Widget>[
+                  Container( 
+                    padding: const EdgeInsets.symmetric(horizontal: 100),
+                    child: Text("Social", style: buttonTextStyle),
+                  ),
+
+                  Container( 
+                    padding: const EdgeInsets.symmetric(horizontal: 100),
+                    child: Text("Physical", style: buttonTextStyle),
+                  ),
+
+                  Container( 
+                    padding: const EdgeInsets.symmetric(horizontal: 100),
+                    child: Text("Mental", style: buttonTextStyle),
+                  ),
+
+                  Container( 
+                    padding: const EdgeInsets.symmetric(horizontal: 100),
+                    child: Text("Resources", style: buttonTextStyle),
+                  ),
+                
                 ],
               ),
-            )
-
-
+            ),
           ]
         ),
       ),
