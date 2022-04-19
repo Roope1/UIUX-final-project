@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+
 var titleTextStyle = GoogleFonts.robotoMono(
   fontSize: 72,
   color: Colors.black );
@@ -15,7 +16,7 @@ var buttonTextStyle = GoogleFonts.robotoMono(
 const double textBoxWidth = 800;
 
 var textBoxDec = const BoxDecoration (
-  color: Colors.amber,
+  color: Color(0xffDFF3FF),
   borderRadius: BorderRadius.all( 
     Radius.circular(12.0),
   ),
@@ -56,10 +57,16 @@ class CovidWebsite extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column ( 
           children: <Widget>[ 
-
+          
             //Title box
             Container(  
-              color: Colors.blue,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/Images/BGImage.jpg"),
+                  fit: BoxFit.fitHeight,
+                  )
+                
+               ),
               height: MediaQuery.of(context).size.height / 1.5,
               width: MediaQuery.of(context).size.width,
               padding: const EdgeInsets.only(left: 100),
@@ -73,38 +80,58 @@ class CovidWebsite extends StatelessWidget {
             ),
 
             // Navigation bar
-            Container(
-              
-              color: Colors.teal,
-              height: 70,
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-
-              // Navigation bar buttons
-                children:  const <Widget>[
-                  NavButton("Social"),
-                  NavButton("Mental"),
-                  NavButton("Physical"),
-                  NavButton("Resources"),
-                
-                ],
-              ),
-            ),
+            const NavBar(),
 
             // Actual page content
-            Column ( 
-              children: const <Widget>[
-                SocialContent(),
-                PhysicalContent(),
-                MentalContent(),
-                ResourcesContent(),
-              ],
-            )
+            Container(
+              width: double.infinity,
+              decoration: const BoxDecoration( 
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.blue,
+                    Colors.white,
+                  ]
+                )
+              ),
+              child: Column ( 
+                children: const <Widget>[
+                  SocialContent(),
+                  PhysicalContent(),
+                  MentalContent(),
+                  ResourcesContent(),
+                ],
+              )
+            ) 
           ],
         )  
       ),
+    );
+  }
+}
+
+class NavBar extends StatelessWidget {
+  const NavBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+     color: Colors.teal,
+     height: 70,
+     width: MediaQuery.of(context).size.width,
+     child: Row(
+       mainAxisAlignment: MainAxisAlignment.center,
+       crossAxisAlignment: CrossAxisAlignment.center,
+
+     // Navigation bar buttons
+       children:  const <Widget>[
+         NavButton("Social"),
+         NavButton("Mental"),
+         NavButton("Physical"),
+         NavButton("Resources"),
+       ],
+     ),
     );
   }
 }
