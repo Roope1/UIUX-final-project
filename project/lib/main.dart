@@ -68,10 +68,8 @@ class CovidWebsite extends StatelessWidget {
               ),
             ),
           ),
-
           // Navigation bar
           const NavBar(),
-
           // Actual page content
           Container(
               width: double.infinity,
