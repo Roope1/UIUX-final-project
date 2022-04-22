@@ -81,6 +81,9 @@ flutter:
     - family: RobotoMono
       fonts:
         - asset: assets/Fonts/RobotoMono.ttf
+    - family: OpenSans
+      fonts:
+        - asset: assets/Fonts/OpenSans-Regular.ttf
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf

@@ -4,12 +4,12 @@
 import 'package:flutter/material.dart';
 
 var titleTextStyle = const TextStyle(
-    fontFamily: "RobotoMono", 
-    fontSize: 72, 
-    color: Colors.black);
+    fontFamily: "OpenSans-Regular", 
+    fontSize: 100, 
+    color: Colors.white);
 
 var buttonTextStyle = const TextStyle(
-    fontFamily: "RobotoMono",
+    fontFamily: "OpenSans-Regular",
     fontSize: 30, 
     color: Colors.black);
 
@@ -24,14 +24,16 @@ var textBoxDec = const BoxDecoration(
     BoxShadow(
       color: Colors.black87,
       blurRadius: 10.0,
+      offset: Offset(0, 1)
     )
   ]
 );
 
 var textBoxPadding = const EdgeInsets.symmetric(vertical: 10, horizontal: 20);
 var textBoxMargin = const EdgeInsets.symmetric(horizontal: 10, vertical: 50);
+var navScrollCurve = Curves.decelerate;
 
-var contentStyle = const TextStyle(fontFamily: "RobotoMono", fontSize: 16);
+var contentStyle = const TextStyle(fontFamily: "OpenSans-Regular", fontSize: 16);
 enum Active { social, mental, physical, resources }
 var activePage = Active.social; // By default social page is at the top
 
@@ -63,13 +65,25 @@ class CovidWebsite extends StatelessWidget {
         controller: _controller,
         child: Column(
           children: <Widget>[
+            
+
             //Title box
             Container(
               decoration: const BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage("assets/Images/BGImage.jpg"),
-                fit: BoxFit.fitHeight,
-              )),
+                image: DecorationImage(
+                  image: AssetImage("assets/Images/light.png"),
+                  fit: BoxFit.fitWidth, 
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black38,
+                    blurRadius: 20,
+                    blurStyle: BlurStyle.normal,
+                  )
+                ],
+
+               
+              ),
               height: MediaQuery.of(context).size.height / 1.5,
               width: MediaQuery.of(context).size.width,
               padding: const EdgeInsets.only(left: 100),
@@ -87,14 +101,22 @@ class CovidWebsite extends StatelessWidget {
             Container(
               width: double.infinity,
               decoration: const BoxDecoration(
+                
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.blue,
+                    Color(0xff66bbc2),
                     Colors.white,
                   ]
-                )
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black38,
+                    blurRadius: 20,
+                  )
+                ],
+                 
               ),
               child: Column(
                 children: const [
@@ -119,13 +141,14 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Ink(
-      color: Colors.teal,
+      //color: Color.fromRGBO(255, 175, 71, 1),
+      color: Color(0xff00A3A3),
       height: 70,
       width: MediaQuery.of(context).size.width,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-
+        
         // Navigation bar buttons
         children: <Widget>[
           NavButton("Social", activePage == Active.social),
@@ -162,18 +185,27 @@ class NavButton extends StatelessWidget {
         // I know its bad code below, but it works
         switch (title) {
           case "Social":{
+              _controller.animateTo(1000,
+                  duration: const Duration(seconds: 2),
+                  curve: navScrollCurve);
               activePage = Active.social;
               break;
           } case "Mental":{
               _controller.animateTo(1000,
                   duration: const Duration(seconds: 2),
-                  curve: Curves.slowMiddle);
+                  curve: navScrollCurve);
               activePage = Active.mental;
               break;
           } case "Physical":{
+              _controller.animateTo(1000,
+                  duration: const Duration(seconds: 2),
+                  curve: navScrollCurve);
               activePage = Active.physical;
               break;
           } case "Resources":{
+             _controller.animateTo(1000, 
+                  duration: const Duration(seconds: 2),
+                  curve: navScrollCurve);
               activePage = Active.resources;
               break;
           }
