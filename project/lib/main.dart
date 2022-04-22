@@ -3,8 +3,10 @@
 
 import 'package:flutter/material.dart';
 
-var titleTextStyle = const TextStyle(fontSize: 72, color: Colors.black);
-var buttonTextStyle = const TextStyle(fontSize: 30, color: Colors.black);
+var titleTextStyle = const TextStyle(
+    fontFamily: "RobotoMono", fontSize: 72, color: Colors.black);
+var buttonTextStyle = const TextStyle(
+    fontFamily: "RobotoMono", fontSize: 30, color: Colors.black);
 
 const double textBoxWidth = 1000;
 
@@ -24,6 +26,8 @@ var textBoxPadding = const EdgeInsets.symmetric(vertical: 10, horizontal: 20);
 var textBoxMargin = const EdgeInsets.symmetric(horizontal: 10, vertical: 50);
 
 var contentStyle = const TextStyle(fontFamily: "RobotoMono", fontSize: 16);
+enum Active { social, mental, physical, resources }
+var activePage = Active.social; // By default social page is at the top
 
 void main() {
   runApp(const MyApp());
@@ -72,28 +76,31 @@ class CovidWebsite extends StatelessWidget {
           const NavBar(),
           // Actual page content
           Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                    Colors.blue,
-                    Colors.white,
-                  ])),
-              child: Column(
-                children: const <Widget>[
-                  SocialContent(),
-                  PhysicalContent(),
-                  MentalContent(),
-                  ResourcesContent(),
-                ],
-              ))
+            width: double.infinity,
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                  Colors.blue,
+                  Colors.white,
+                ])),
+            child: content,
+          )
         ],
       )),
     );
   }
 }
+
+var content = Column(
+  children: const [
+    SocialContent(),
+    PhysicalContent(),
+    MentalContent(),
+    ResourcesContent(),
+  ],
+);
 
 class NavBar extends StatelessWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -109,11 +116,11 @@ class NavBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
 
         // Navigation bar buttons
-        children: const <Widget>[
-          NavButton("Social"),
-          NavButton("Mental"),
-          NavButton("Physical"),
-          NavButton("Resources"),
+        children: <Widget>[
+          NavButton("Social", activePage == Active.social),
+          NavButton("Mental", activePage == Active.mental),
+          NavButton("Physical", activePage == Active.physical),
+          NavButton("Resources", activePage == Active.resources),
         ],
       ),
     );
@@ -122,15 +129,45 @@ class NavBar extends StatelessWidget {
 
 class NavButton extends StatelessWidget {
   final String title;
+  final bool status;
 
-  const NavButton(this.title, {Key? key}) : super(key: key);
+  const NavButton(this.title, this.status, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 100),
-      child: Text(title, style: buttonTextStyle),
-    );
+    return InkWell(
+        // Inkwell documentation: https://api.flutter.dev/flutter/material/InkWell-class.html
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 100),
+          child: Text(title, style: buttonTextStyle),
+          color: status ? Colors.white : Colors.teal,
+        ),
+        onTap: () {
+          print("clicked $title"); // DEBUG PURPOSES ONLY
+          // I know its bad code below, but it works
+          switch (title) {
+            case "Social":
+              {
+                activePage == Active.social;
+                break;
+              }
+            case "Mental":
+              {
+                activePage == Active.mental;
+                break;
+              }
+            case "Physical":
+              {
+                activePage == Active.physical;
+                break;
+              }
+            case "Resources":
+              {
+                activePage == Active.resources;
+                break;
+              }
+          }
+        });
   }
 }
 
