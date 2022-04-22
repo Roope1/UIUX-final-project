@@ -98,10 +98,10 @@ class CovidWebsite extends StatelessWidget {
               ),
               child: Column(
                 children: const [
-                  SocialContent(),
-                  PhysicalContent(),
-                  MentalContent(),
-                  ResourcesContent(),
+                  InformationContent("Social"),
+                  InformationContent("Physical"),
+                  InformationContent("Mental"),
+                  InformationContent("Resources"),
                 ],
               ),
             )
@@ -112,45 +112,6 @@ class CovidWebsite extends StatelessWidget {
   }
 }
 
-Column getContent() {
-  if (activePage == Active.social) {
-    return Column(
-      children: const [
-        SocialContent(),
-        PhysicalContent(),
-        MentalContent(),
-        ResourcesContent(),
-      ],
-    );
-  } else if (activePage == Active.physical) {
-    return Column(
-      children: const [
-        PhysicalContent(),
-        SocialContent(),
-        MentalContent(),
-        ResourcesContent(),
-      ],
-    );
-  } else if (activePage == Active.mental) {
-    return Column(
-      children: const [
-        MentalContent(),
-        SocialContent(),
-        PhysicalContent(),
-        ResourcesContent(),
-      ],
-    );
-  } else {
-    return Column(
-      children: const [
-        ResourcesContent(),
-        SocialContent(),
-        PhysicalContent(),
-        MentalContent(),
-      ],
-    );
-  }
-}
 
 class NavBar extends StatelessWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -195,7 +156,6 @@ class NavButton extends StatelessWidget {
           title,
           style: buttonTextStyle,
         ),
-        //color: status ? Colors.white : Colors.teal,
       ),
       onTap: () {
         // print("clicked $title"); // DEBUG PURPOSES ONLY
@@ -223,98 +183,62 @@ class NavButton extends StatelessWidget {
   }
 }
 
-class SocialContent extends StatelessWidget {
-  const SocialContent({Key? key}) : super(key: key);
+class InformationContent extends StatelessWidget {
+
+  final String subject;
+
+  const InformationContent(this.subject, {Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Container( 
       decoration: textBoxDec,
       padding: textBoxPadding,
       margin: textBoxMargin,
       alignment: Alignment.center,
       width: textBoxWidth,
-      child: Column(
-        children: [
-          Text("Social", style: buttonTextStyle),
-          //Actual text
-          Text(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            style: contentStyle,
-          )
-        ],
-      )
+      child: getContent(subject)
     );
   }
 }
 
-class PhysicalContent extends StatelessWidget {
-  const PhysicalContent({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: textBoxDec,
-      margin: textBoxMargin,
-      padding: textBoxPadding,
-      alignment: Alignment.center,
-      width: textBoxWidth,
-      child: Column(
-        children: [
-          Text("Physical", style: buttonTextStyle),
-          //Actual text
-          Text(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+Column getContent(String subject){
+  if (subject == "Social") {
+    return Column( 
+      children: [
+        Text("Social", style: buttonTextStyle),
+        Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             style: contentStyle,
-          )
-        ],
-      )
+        )
+      ],
+    );
+  } else if (subject == "Physical") {
+    return Column( 
+      children: [
+        Text("Physical", style: buttonTextStyle),
+        Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            style: contentStyle,
+        )
+      ],
+    );
+  } else if (subject == "Mental") {
+    return Column( 
+      children: [
+        Text("Mental", style: buttonTextStyle),
+        Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            style: contentStyle,
+        )
+      ],
+    );
+  } else {
+    return Column( 
+      children: [
+        Text("Resources", style: buttonTextStyle),
+        Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            style: contentStyle,
+        )
+      ],
     );
   }
 }
 
-class MentalContent extends StatelessWidget {
-  const MentalContent({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: textBoxDec,
-      padding: textBoxPadding,
-      margin: textBoxMargin,
-      alignment: Alignment.center,
-      width: textBoxWidth,
-      child: Column(
-        children: [
-          Text("Mental", style: buttonTextStyle),
-          //Actual text
-          Text(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            style: contentStyle,
-          )
-        ],
-      )
-    );
-  }
-}
-
-class ResourcesContent extends StatelessWidget {
-  const ResourcesContent({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: textBoxDec,
-      padding: textBoxPadding,
-      margin: textBoxMargin,
-      alignment: Alignment.center,
-      width: textBoxWidth,
-      child: Column(
-        children: [
-          Text("Resources", style: buttonTextStyle),
-          //Actual text
-          Text(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            style: contentStyle,
-          )
-        ],
-      )
-    );
-  }
-}
