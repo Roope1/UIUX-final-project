@@ -10,11 +10,11 @@ var titleTextStyle = const TextStyle(
 
 var buttonTextStyle = const TextStyle(
     fontFamily: "OpenSans-Regular",
-    fontSize: 30, 
+    fontSize: 32, 
     color: Colors.black);
     
 
-const double textBoxWidth = 1000;
+const double textBoxWidth = 1200;
 
 var textBoxDec = const BoxDecoration(
   color: Color(0xffDFF3FF),
@@ -34,8 +34,8 @@ var textBoxPadding = const EdgeInsets.symmetric(vertical: 10, horizontal: 20);
 var textBoxMargin = const EdgeInsets.symmetric(horizontal: 10, vertical: 50);
 var navScrollCurve = Curves.decelerate;
 
-var contentTitleStyle = const TextStyle(fontFamily: "OpenSans-Bold", fontSize: 16, fontWeight: FontWeight.bold);
-var contentStyle = const TextStyle(fontFamily: "OpenSans-Regular", fontSize: 16);
+var contentTitleStyle = const TextStyle(fontFamily: "OpenSans-Bold", fontSize: 20, fontWeight: FontWeight.bold);
+var contentStyle = const TextStyle(fontFamily: "OpenSans-Regular", fontSize: 20);
 enum Active { social, mental, physical, resources }
 var activePage = Active.social; // By default social page is at the top
 
@@ -118,6 +118,7 @@ class CovidWebsite extends StatelessWidget {
               ),
               child: Column(
                 children: const [
+                  IngressText(),
                   InformationContent("Social"),
                   InformationContent("Physical"),
                   InformationContent("Mental"),
@@ -140,7 +141,7 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Ink(
       //color: Color.fromRGBO(255, 175, 71, 1),
-      color: Color(0xff00A3A3),
+      color: const Color(0xff00A3A3),
       height: 70,
       width: MediaQuery.of(context).size.width,
       child: Row(
@@ -150,8 +151,8 @@ class NavBar extends StatelessWidget {
         // Navigation bar buttons
         children: <Widget>[
           NavButton("Social", activePage == Active.social),
-          NavButton("Mental", activePage == Active.mental),
           NavButton("Physical", activePage == Active.physical),
+          NavButton("Mental", activePage == Active.mental),
           NavButton("Resources", activePage == Active.resources),
         ],
       ),
@@ -212,6 +213,31 @@ class NavButton extends StatelessWidget {
     );
   }
 }
+
+class IngressText extends StatelessWidget {
+  const IngressText({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container( 
+      //decoration: textBoxDec,
+      padding: textBoxPadding,
+      margin: textBoxMargin,
+      width: textBoxWidth,
+      child: const Text( 
+        "The object of this website is to inform LUT students about mental wellbeing during the COVID-19 pandemic and its restrictions. Down below are some tips and resources on how to cope in the world of COVID restrictions.",
+        style: TextStyle(
+          fontFamily: "OpenSans-Regular",
+          fontSize: 26,
+          color: Color.fromARGB(255, 70, 70, 70),
+        ),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+
+}
+
 
 class InformationContent extends StatelessWidget {
 
