@@ -12,6 +12,7 @@ var buttonTextStyle = const TextStyle(
     fontFamily: "OpenSans-Regular",
     fontSize: 30, 
     color: Colors.black);
+    
 
 const double textBoxWidth = 1000;
 
@@ -33,6 +34,7 @@ var textBoxPadding = const EdgeInsets.symmetric(vertical: 10, horizontal: 20);
 var textBoxMargin = const EdgeInsets.symmetric(horizontal: 10, vertical: 50);
 var navScrollCurve = Curves.decelerate;
 
+var contentTitleStyle = const TextStyle(fontFamily: "OpenSans-Bold", fontSize: 16, fontWeight: FontWeight.bold);
 var contentStyle = const TextStyle(fontFamily: "OpenSans-Regular", fontSize: 16);
 enum Active { social, mental, physical, resources }
 var activePage = Active.social; // By default social page is at the top
@@ -227,7 +229,6 @@ class InformationContent extends StatelessWidget {
       decoration: textBoxDec,
       padding: textBoxPadding,
       margin: textBoxMargin,
-      alignment: Alignment.center,
       width: textBoxWidth,
       child: getContent(subject)
     );
@@ -236,21 +237,43 @@ class InformationContent extends StatelessWidget {
 
 Column getContent(String subject){
   if (subject == "Social") {
-    return Column( 
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Social", style: buttonTextStyle),
-        Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            style: contentStyle,
-        )
+        Text("Find new ways to connect with friends.",
+            style: contentTitleStyle,),
+        Text("Social media is great way to connect with your friends, when you can't see them live. Pandemic can cause stress and it's better to keep in touch with your family and friends, to get emotional support.",
+            style: contentStyle),
+        Text("\nSocial connections help with physical health",
+            style: contentTitleStyle),
+        Text("Isolated people can feel low or anxious. It's better to reach out to a friend than turn to less positive coping strategies, such as drinking alcohol.",
+            style: contentStyle),
+        Text("\nMake online study circles",
+            style: contentTitleStyle),
+        Text("Studying together online can help you maintain your daily routine and social relations.",
+            style: contentStyle),
+
       ],
     );
   } else if (subject == "Physical") {
     return Column( 
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Physical", style: buttonTextStyle),
-        Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            style: contentStyle,
-        )
+        Text("Remember to exercise",
+            style: contentTitleStyle,
+        ),
+        Text("20 minutes of exercise a day can help lift your mood. You can for example, follow online exercise videos at home, when the gyms are closed or go outside for a walk.",
+            style: contentStyle),
+        Text("\nTry to get a good night's sleep",
+            style: contentTitleStyle),
+        Text("Sleeping enough is important and helps to maintain your overall health.",
+            style: contentStyle),
+        Text("\nEat well",
+            style: contentTitleStyle),
+        Text("Remember to eat healthy food even during the quarantine. Eating healthy has positive effects on your mood.",
+            style: contentStyle),
       ],
     );
   } else if (subject == "Mental") {
