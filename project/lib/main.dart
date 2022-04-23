@@ -41,13 +41,14 @@ var activePage = Active.social; // By default social page is at the top
 
 ScrollController _controller = ScrollController();
 
+
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -62,13 +63,12 @@ class CovidWebsite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
         controller: _controller,
         child: Column(
           children: <Widget>[
-            
-
             //Title box
             Container(
               decoration: const BoxDecoration(
@@ -83,11 +83,9 @@ class CovidWebsite extends StatelessWidget {
                     blurStyle: BlurStyle.normal,
                   )
                 ],
-
-               
               ),
-              height: MediaQuery.of(context).size.height / 1.5,
-              width: MediaQuery.of(context).size.width,
+              height: size.height / 1.5,
+              width: size.width,
               padding: const EdgeInsets.only(left: 100),
               child: Align(
                 alignment: Alignment.centerLeft,
@@ -103,7 +101,6 @@ class CovidWebsite extends StatelessWidget {
             Container(
               width: double.infinity,
               decoration: const BoxDecoration(
-                
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -118,7 +115,6 @@ class CovidWebsite extends StatelessWidget {
                     blurRadius: 20,
                   )
                 ],
-                 
               ),
               child: Column(
                 children: const [
@@ -241,7 +237,7 @@ Column getContent(String subject){
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Social", style: buttonTextStyle),
-        Text("Find new ways to connect with friends.",
+        Text("\nFind new ways to connect with friends.",
             style: contentTitleStyle,),
         Text("Social media is great way to connect with your friends, when you can't see them live. Pandemic can cause stress and it's better to keep in touch with your family and friends, to get emotional support.",
             style: contentStyle),
@@ -261,7 +257,7 @@ Column getContent(String subject){
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Physical", style: buttonTextStyle),
-        Text("Remember to exercise",
+        Text("\nRemember to exercise",
             style: contentTitleStyle,
         ),
         Text("20 minutes of exercise a day can help lift your mood. You can for example, follow online exercise videos at home, when the gyms are closed or go outside for a walk.",
@@ -278,11 +274,23 @@ Column getContent(String subject){
     );
   } else if (subject == "Mental") {
     return Column( 
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Mental", style: buttonTextStyle),
-        Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            style: contentStyle,
-        )
+        Text("\nRoutines",
+          style: contentTitleStyle,
+        ),
+        Text("Maintaining your regular routine is vital to your mental health. Having predictability in life will make you feel more in control.",
+          style: contentStyle
+        ),
+        Text("\nMedia",
+          style: contentTitleStyle),
+        Text("Constant news about COVID-19 may result in psychological distress. You can limit your social media exposure to COVID-19 if you feel like news affect your mental wellbeing.",
+          style: contentStyle),
+        Text("\nGive yourself time to relax",
+        style: contentTitleStyle),
+        Text("Even though it is important to study and enjoy hobbies, it's also important to recharge. Many people benefit from reading, listening to music or even yoga. Find a way to relax that works for you and do it regularly.",
+          style: contentStyle),
       ],
     );
   } else {
@@ -296,4 +304,3 @@ Column getContent(String subject){
     );
   }
 }
-
