@@ -271,8 +271,7 @@ Column getContent(String subject){
       children: [
         Text("Physical", style: buttonTextStyle),
         Text("\nRemember to exercise",
-            style: contentTitleStyle,
-        ),
+            style: contentTitleStyle,),
         Text("20 minutes of exercise a day can help lift your mood. You can for example, follow online exercise videos at home, when the gyms are closed or go outside for a walk.",
             style: contentStyle),
         Text("\nTry to get a good night's sleep",
@@ -291,11 +290,9 @@ Column getContent(String subject){
       children: [
         Text("Mental", style: buttonTextStyle),
         Text("\nRoutines",
-          style: contentTitleStyle,
-        ),
+          style: contentTitleStyle,),
         Text("Maintaining your regular routine is vital to your mental health. Having predictability in life will make you feel more in control.",
-          style: contentStyle
-        ),
+          style: contentStyle),
         Text("\nMedia",
           style: contentTitleStyle),
         Text("Constant news about COVID-19 may result in psychological distress. You can limit your social media exposure to COVID-19 if you feel like news affect your mental wellbeing.",
