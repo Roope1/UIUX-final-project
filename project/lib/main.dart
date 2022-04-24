@@ -32,14 +32,14 @@ var textBoxDec = const BoxDecoration(
 
 var textBoxPadding = const EdgeInsets.symmetric(vertical: 10, horizontal: 20);
 var textBoxMargin = const EdgeInsets.symmetric(horizontal: 10, vertical: 50);
-var navScrollCurve = Curves.decelerate;
+var navScrollCurve = Curves.easeOut;
 
 var contentTitleStyle = const TextStyle(fontFamily: "OpenSans-Bold", fontSize: 20, fontWeight: FontWeight.bold);
 var contentStyle = const TextStyle(fontFamily: "OpenSans-Regular", fontSize: 20);
 enum Active { social, mental, physical, resources }
 var activePage = Active.social; // By default social page is at the top
 
-ScrollController _controller = ScrollController();
+ScrollController  _controller = ScrollController();
 
 
 void main() {
@@ -184,25 +184,25 @@ class NavButton extends StatelessWidget {
         // I know its bad code below, but it works
         switch (title) {
           case "Social":{
-              _controller.animateTo(1000,
+              _controller.animateTo(700,
                   duration: const Duration(seconds: 2),
                   curve: navScrollCurve);
               activePage = Active.social;
               break;
-          } case "Mental":{
-              _controller.animateTo(1000,
-                  duration: const Duration(seconds: 2),
-                  curve: navScrollCurve);
-              activePage = Active.mental;
-              break;
           } case "Physical":{
-              _controller.animateTo(1000,
+              _controller.animateTo(1100,
                   duration: const Duration(seconds: 2),
                   curve: navScrollCurve);
               activePage = Active.physical;
               break;
+          }case "Mental":{
+              _controller.animateTo(1500,
+                  duration: const Duration(seconds: 2),
+                  curve: navScrollCurve);
+              activePage = Active.mental;
+              break;
           } case "Resources":{
-             _controller.animateTo(1000, 
+             _controller.animateTo(1750, 
                   duration: const Duration(seconds: 2),
                   curve: navScrollCurve);
               activePage = Active.resources;
@@ -320,12 +320,34 @@ Column getContent(String subject){
       ],
     );
   } else {
-    return Column( 
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start, 
       children: [
         Text("Resources", style: buttonTextStyle),
-        Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            style: contentStyle,
-        )
+        Text("\nFinnish Student Health Service (FSHF / YTHS)",
+            style: contentTitleStyle),
+        Text("https://www.yths.fi/en/frontpage/",
+            style: contentStyle),
+        Text("\nStudent Union of LUT university (LTKY)",
+            style: contentTitleStyle),
+        Text("https://ltky.fi/en/",
+            style: contentStyle),
+        Text("\nHobbla",
+            style: contentTitleStyle),
+        Text("https://en.hobbla.fi/lappeenranta",
+            style: contentStyle),
+        Text("\nMayo Clinic",
+            style: contentTitleStyle),
+        Text("https://www.mayoclinic.org/diseases-conditions/coronavirus/in-depth/mental-health-covid-19/art-20482731",
+            style: contentStyle),
+        Text("\nSekasin247 chat (only in finnish)",
+            style: contentTitleStyle),
+        Text("https://sekasin247.fi/",
+            style: contentStyle),
+        Text("\nWorld Health Organisation (WHO)",
+            style: contentTitleStyle),
+        Text("https://www.who.int/teams/mental-health-and-substance-use/mental-health-and-covid-19",
+            style: contentStyle),
       ],
     );
   }
