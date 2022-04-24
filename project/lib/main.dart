@@ -13,8 +13,7 @@ var buttonTextStyle = const TextStyle(
     fontSize: 32, 
     color: Colors.black);
     
-
-const double textBoxWidth = 1200;
+const double textBoxWidth = 1200; //Hard coded width because flutter makes it overly complicated to do percentages of page widht
 
 var textBoxDec = const BoxDecoration(
   color: Color(0xffDFF3FF),
@@ -32,15 +31,12 @@ var textBoxDec = const BoxDecoration(
 
 var textBoxPadding = const EdgeInsets.symmetric(vertical: 10, horizontal: 20);
 var textBoxMargin = const EdgeInsets.symmetric(horizontal: 10, vertical: 50);
-var navScrollCurve = Curves.easeOut;
 
 var contentTitleStyle = const TextStyle(fontFamily: "OpenSans-Bold", fontSize: 20, fontWeight: FontWeight.bold);
 var contentStyle = const TextStyle(fontFamily: "OpenSans-Regular", fontSize: 20);
-enum Active { social, mental, physical, resources }
-var activePage = Active.social; // By default social page is at the top
 
 ScrollController  _controller = ScrollController();
-
+var navScrollCurve = Curves.easeOut;
 
 void main() {
   runApp(const MyApp());
@@ -133,14 +129,12 @@ class CovidWebsite extends StatelessWidget {
   }
 }
 
-
 class NavBar extends StatelessWidget {
   const NavBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Ink(
-      //color: Color.fromRGBO(255, 175, 71, 1),
       color: const Color(0xff00A3A3),
       height: 70,
       width: MediaQuery.of(context).size.width,
@@ -149,11 +143,11 @@ class NavBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         
         // Navigation bar buttons
-        children: <Widget>[
-          NavButton("Social", activePage == Active.social),
-          NavButton("Physical", activePage == Active.physical),
-          NavButton("Mental", activePage == Active.mental),
-          NavButton("Resources", activePage == Active.resources),
+        children: const <Widget>[
+          NavButton("Social"),
+          NavButton("Physical"),
+          NavButton("Mental"),
+          NavButton("Resources"),
         ],
       ),
     );
@@ -162,9 +156,7 @@ class NavBar extends StatelessWidget {
 
 class NavButton extends StatelessWidget {
   final String title;
-  final bool status;
-
-  const NavButton(this.title, this.status, {Key? key}) : super(key: key);
+  const NavButton(this.title, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -180,33 +172,28 @@ class NavButton extends StatelessWidget {
         ),
       ),
       onTap: () {
-        // print("clicked $title"); // DEBUG PURPOSES ONLY
         // I know its bad code below, but it works
         switch (title) {
           case "Social":{
-              _controller.animateTo(700,
-                  duration: const Duration(seconds: 2),
-                  curve: navScrollCurve);
-              activePage = Active.social;
-              break;
+            _controller.animateTo(700,
+              duration: const Duration(seconds: 2),
+              curve: navScrollCurve);             
+            break;
           } case "Physical":{
-              _controller.animateTo(1100,
-                  duration: const Duration(seconds: 2),
-                  curve: navScrollCurve);
-              activePage = Active.physical;
-              break;
+            _controller.animateTo(1100,
+              duration: const Duration(seconds: 2),
+              curve: navScrollCurve);              
+            break;
           }case "Mental":{
-              _controller.animateTo(1500,
-                  duration: const Duration(seconds: 2),
-                  curve: navScrollCurve);
-              activePage = Active.mental;
-              break;
+            _controller.animateTo(1500,
+              duration: const Duration(seconds: 2),
+              curve: navScrollCurve);              
+            break;
           } case "Resources":{
-             _controller.animateTo(1750, 
-                  duration: const Duration(seconds: 2),
-                  curve: navScrollCurve);
-              activePage = Active.resources;
-              break;
+            _controller.animateTo(1750, 
+              duration: const Duration(seconds: 2),
+              curve: navScrollCurve);
+            break;
           }
         }
       }
@@ -235,14 +222,12 @@ class IngressText extends StatelessWidget {
       ),
     );
   }
-
 }
 
 
 class InformationContent extends StatelessWidget {
 
   final String subject;
-
   const InformationContent(this.subject, {Key? key}) : super(key: key);
 
   @override
@@ -257,9 +242,11 @@ class InformationContent extends StatelessWidget {
   }
 }
 
+/// Getter function for different kinds of text boxes with information in them.
+/// Did it like this so I don't need to repeat a lot of styling code seen in the Information content class
 Column getContent(String subject){
   if (subject == "Social") {
-    return Column(
+    return Column( //SOCIAL
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Social", style: buttonTextStyle),
@@ -279,7 +266,7 @@ Column getContent(String subject){
       ],
     );
   } else if (subject == "Physical") {
-    return Column( 
+    return Column( //PHYSICAL
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Physical", style: buttonTextStyle),
@@ -299,7 +286,7 @@ Column getContent(String subject){
       ],
     );
   } else if (subject == "Mental") {
-    return Column( 
+    return Column(  // MENTAL
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Mental", style: buttonTextStyle),
@@ -320,7 +307,7 @@ Column getContent(String subject){
       ],
     );
   } else {
-    return Column(
+    return Column( // RESOURCES
       crossAxisAlignment: CrossAxisAlignment.start, 
       children: [
         Text("Resources", style: buttonTextStyle),
